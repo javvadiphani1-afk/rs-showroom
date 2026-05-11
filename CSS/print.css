@@ -1,0 +1,294 @@
+/* =========================================================
+   PRINT STYLES - INVOICE
+   ========================================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  line-height: 1.5;
+  color: #333;
+  background: white;
+  padding: 0;
+}
+
+.invoice-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  background: white;
+  box-shadow: none;
+  page-break-after: always;
+}
+
+/* Header */
+.invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 3px solid #333;
+  padding-bottom: 15px;
+}
+
+.company-info h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 8px 0;
+}
+
+.company-info p {
+  font-size: 12px;
+  margin: 3px 0;
+  color: #555;
+}
+
+.invoice-title h2 {
+  font-size: 32px;
+  font-weight: bold;
+  text-align: center;
+  letter-spacing: 2px;
+}
+
+/* Invoice Details */
+.invoice-details {
+  margin-bottom: 20px;
+  background: #f9f9f9;
+  padding: 12px;
+  border-radius: 4px;
+}
+
+.detail-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+
+.detail-item label {
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.detail-item span {
+  font-weight: 600;
+}
+
+/* Customer Section */
+.customer-section {
+  margin-bottom: 20px;
+}
+
+.section-title {
+  font-weight: bold;
+  font-size: 13px;
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 5px;
+}
+
+.customer-info p {
+  font-size: 13px;
+  margin: 4px 0;
+}
+
+.customer-info strong {
+  min-width: 100px;
+  display: inline-block;
+}
+
+/* Items Table */
+.items-table {
+  width: 100%;
+  margin-bottom: 20px;
+  border-collapse: collapse;
+  font-size: 12px;
+}
+
+.items-table thead {
+  background: #2c3e50;
+  color: white;
+}
+
+.items-table th {
+  padding: 10px;
+  text-align: left;
+  font-weight: bold;
+  border: 1px solid #2c3e50;
+}
+
+.items-table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.items-table tbody tr:nth-child(even) {
+  background: #f9f9f9;
+}
+
+.items-table tbody tr:last-child td {
+  border-bottom: 2px solid #333;
+}
+
+.col-sno {
+  width: 8%;
+  text-align: center;
+}
+
+.col-qty,
+.col-rate,
+.col-total {
+  text-align: right;
+  width: 12%;
+}
+
+.col-desc {
+  flex: 1;
+}
+
+/* Totals Section */
+.totals-section {
+  margin-bottom: 20px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  background: #f9f9f9;
+}
+
+.totals-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 13px;
+}
+
+.totals-row.total-amount {
+  font-size: 16px;
+  font-weight: bold;
+  border-top: 2px solid #333;
+  border-bottom: 2px solid #333;
+  padding: 10px 0;
+  margin: 12px 0;
+  background: white;
+}
+
+.totals-row .label {
+  font-weight: 600;
+}
+
+.totals-row .value {
+  min-width: 80px;
+  text-align: right;
+  font-weight: 600;
+}
+
+/* QR Code Section */
+.qr-section {
+  text-align: center;
+  margin: 20px 0;
+  padding: 15px;
+  border: 1px dashed #ddd;
+  background: #fafafa;
+  page-break-inside: avoid;
+}
+
+.qr-label {
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.qr-code {
+  display: inline-block;
+  padding: 10px;
+  background: white;
+  border: 1px solid #ddd;
+}
+
+/* Footer */
+.invoice-footer {
+  text-align: center;
+  border-top: 1px solid #ddd;
+  padding-top: 15px;
+  font-size: 11px;
+  color: #666;
+  margin-top: 20px;
+}
+
+.footer-note {
+  font-size: 10px;
+  margin-top: 5px;
+}
+
+/* Print Styles */
+@media print {
+  body {
+    margin: 0;
+    padding: 0;
+  }
+
+  .invoice-container {
+    margin: 0;
+    padding: 10mm;
+    max-width: 100%;
+    box-shadow: none;
+    page-break-after: always;
+  }
+
+  button,
+  .no-print {
+    display: none !important;
+  }
+
+  .invoice-container {
+    page-break-after: always;
+  }
+
+  .qr-section {
+    page-break-inside: avoid;
+  }
+
+  .totals-section {
+    page-break-inside: avoid;
+  }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .invoice-container {
+    padding: 10px;
+  }
+
+  .invoice-header {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .invoice-title {
+    margin-top: 10px;
+  }
+
+  .detail-row {
+    grid-template-columns: 1fr;
+  }
+
+  .items-table {
+    font-size: 11px;
+  }
+
+  .items-table th,
+  .items-table td {
+    padding: 6px;
+  }
+}

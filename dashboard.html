@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Ramu Saree Showroom</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="https://www.image2url.com/r2/default/images/1778478894381-73e87991-c1e5-49b6-b762-98cdb4b3d4cd.png" alt="Logo" class="logo" />
+        <h2>Ramu Saree Showroom</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="new-bill.html" class="nav-link">
+          New Invoice
+        </a>
+
+        <a href="customers.html" class="nav-link">
+          Customers
+        </a>
+
+        <a href="payments.html" class="nav-link">
+          Payments
+        </a>
+
+        <a href="bills.html" class="nav-link">
+          Invoice History
+        </a>
+
+        <a href="monthly-analysis.html" class="nav-link">
+          Sales Reports
+        </a>
+
+        <a href="login.html"
+           class="nav-link logout-link"
+           onclick="logout()">
+          Sign Out
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Page Header -->
+      <header class="page-header">
+        <h1>Dashboard</h1>
+        <p>Welcome to Ramu Saree Showroom Billing System</p>
+      </header>
+
+      <!-- Quick Summary Cards -->
+      <div class="summary-grid">
+
+        <a href="new-bill.html" class="card summary-card link-card">
+          <div class="card-body">
+            <h3>🧾 New Bill</h3>
+            <p>Create and save a new customer bill.</p>
+          </div>
+        </a>
+
+        <a href="customers.html" class="card summary-card link-card">
+          <div class="card-body">
+            <h3>👥 Customers</h3>
+            <p>View customer database and history.</p>
+          </div>
+        </a>
+
+        <a href="payments.html" class="card summary-card link-card">
+          <div class="card-body">
+            <h3>💰 Payments</h3>
+            <p>View today's cash and UPI payments.</p>
+          </div>
+        </a>
+
+        <a href="bills.html" class="card summary-card link-card">
+          <div class="card-body">
+            <h3>📄 Bills</h3>
+            <p>Search and reprint old bills.</p>
+          </div>
+        </a>
+
+        <a href="monthly-analysis.html" class="card summary-card link-card">
+          <div class="card-body">
+            <h3>📈 Monthly Analysis</h3>
+            <p>Check monthly sales reports.</p>
+          </div>
+        </a>
+
+      </div>
+
+      <!-- Info Card -->
+      <div class="card">
+        <div class="card-header">
+          <h2>System Information</h2>
+        </div>
+
+        <div class="card-body">
+          <p>
+            This billing system allows you to:
+          </p>
+
+          <ul>
+            <li>Create new saree bills</li>
+            <li>Generate UPI QR codes automatically</li>
+            <li>Print bills to Bluetooth thermal printers</li>
+            <li>Store all data in Google Sheets</li>
+            <li>View payment reports</li>
+            <li>Analyze monthly sales</li>
+          </ul>
+        </div>
+      </div>
+
+    </main>
+  </div>
+
+  <!-- Authentication & Navigation -->
+  <script src="JS/auth.js"></script>
+
+</body>
+</html>

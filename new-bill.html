@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>New Bill - Ramu Saree Showroom</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+
+  <!-- QR Code Library -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="https://www.image2url.com/r2/default/images/1778478894381-73e87991-c1e5-49b6-b762-98cdb4b3d4cd.png" alt="Logo" class="logo" />
+        <h2>Ramu Saree Showroom</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          Dashboard
+        </a>
+
+        <a href="new-bill.html" class="nav-link">
+          New Invoice
+        </a>
+        <a href="customers.html" class="nav-link">
+          Customers
+        </a>
+        <a href="payments.html" class="nav-link">
+          Payments
+        </a>
+
+        <a href="bills.html" class="nav-link">
+          Invoice History
+        </a>
+
+        <a href="monthly-analysis.html" class="nav-link">
+          Sales Reports
+        </a>
+
+        <a href="login.html"
+           class="nav-link logout-link"
+           onclick="logout()">
+          Sign Out
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <div class="page-header bill-header">
+        <div>
+          <p class="eyebrow">New bill entry</p>
+          <h1>Create a professional invoice</h1>
+          <p class="page-copy">Add saree details, set customer information, and generate a clean invoice for printing or saving.</p>
+        </div>
+      </div>
+
+  <!-- New Bill Page -->
+  <section id="page-bill" class="page active">
+
+    <!-- Bill Details Card -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Bill Details</h2>
+      </div>
+
+      <div class="card-body">
+        <div class="bill-top-row">
+          <div class="field">
+            <label for="billNo">Bill Number</label>
+            <input
+              type="text"
+              id="billNo"
+              placeholder="Auto Generated"
+              disabled
+            />
+          </div>
+
+          <div class="field">
+            <label for="billDate">Date</label>
+            <input type="date" id="billDate" />
+          </div>
+        </div>
+
+        <div class="grid-2">
+          <div class="field">
+            <label for="custName">Customer Name</label>
+            <input
+              type="text"
+              id="custName"
+              placeholder="Customer name"
+            />
+          </div>
+
+          <div class="field">
+            <label for="custPhone">Customer Phone</label>
+            <input
+              type="tel"
+              id="custPhone"
+              placeholder="10-digit phone"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Items Card -->
+    <div class="card">
+      <div class="card-header between">
+        <h2>Items (Sarees)</h2>
+        <button
+          type="button"
+          id="add-item-btn"
+          class="secondary-btn"
+        >
+          + Add Item
+        </button>
+      </div>
+
+      <div class="card-body">
+        <div class="items-header">
+          <span>Description</span>
+          <span>Qty</span>
+          <span>Rate</span>
+          <span>Total</span>
+          <span></span>
+        </div>
+
+        <div id="items-body">
+          <!-- Item rows will be added by JavaScript -->
+        </div>
+      </div>
+    </div>
+
+    <!-- Totals and Payment Card -->
+    <div class="card">
+      <div class="card-body">
+
+        <!-- Totals -->
+        <div class="totals">
+          <div class="totals-row">
+            <span>Subtotal</span>
+            <span id="subtotal-display">₹0.00</span>
+          </div>
+
+          <div class="totals-row total">
+            <span>Total</span>
+            <span id="total-display">₹0.00</span>
+          </div>
+        </div>
+
+        <hr />
+
+        <!-- Payment Section -->
+        <h2>Payment</h2>
+
+        <div class="payment-row">
+          <div class="payment-options">
+            <label>
+              <input
+                type="radio"
+                name="payType"
+                value="CASH"
+                checked
+              />
+              Cash
+            </label>
+
+            <label>
+              <input
+                type="radio"
+                name="payType"
+                value="UPI"
+              />
+              UPI
+            </label>
+          </div>
+
+          <div class="payment-info">
+            <span>
+              Amount:
+              <strong id="pay-amount-display">₹0.00</strong>
+            </span>
+          </div>
+        </div>
+
+        <!-- UPI QR Section -->
+        <div id="upi-section" class="upi-card hidden">
+          <h3>Scan QR to pay exact bill amount</h3>
+
+          <!-- QR Code Container -->
+          <div id="upi-qr"></div>
+
+          <p>
+            UPI ID:
+            <strong id="upi-id-display">8885878767-2@ybl</strong>
+          </p>
+
+          <p>
+            Amount:
+            <strong id="upi-amount-display">₹0.00</strong>
+          </p>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="actions-row">
+          <button
+            type="button"
+            id="save-bill-btn"
+            class="primary-btn"
+          >
+            Save Bill
+          </button>
+
+          <button
+            type="button"
+            id="print-bill-btn"
+            class="secondary-btn hidden"
+          >
+            Print Bill
+          </button>
+
+          <button
+            type="button"
+            id="whatsapp-bill-btn"
+            class="secondary-btn hidden"
+          >
+            Send WhatsApp
+          </button>
+
+          <button
+            type="button"
+            id="new-bill-btn"
+            class="secondary-btn"
+          >
+            Clear / New Bill
+          </button>
+        </div>
+
+        <!-- Success/Error Message -->
+        <p id="bill-message" class="success"></p>
+      </div>
+    </div>
+
+    <!-- Recent Bills Card -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Recent Bills</h2>
+        <p class="card-subtitle">
+          Last few bills saved on this device.
+        </p>
+      </div>
+
+      <div class="card-body">
+        <div class="table">
+          <div class="table-head cols-4">
+            <span>Bill No</span>
+            <span>Date</span>
+            <span>Status</span>
+            <span>Amount</span>
+          </div>
+
+          <div id="recent-bills-body" class="table-body">
+            <!-- JavaScript will populate recent bills -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+    </main>
+  </div>
+
+  <!-- JavaScript Files -->
+  <script src="JS/auth.js"></script>
+  <script src="JS/api.js"></script>
+  <script src="JS/print.js"></script>
+  <script src="JS/new-bill.js"></script>
+  <script src="JS/qr.js"></script>
+
+</body>
+</html>

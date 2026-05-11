@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Invoice</title>
+  <link rel="stylesheet" href="../CSS/print.css" />
+</head>
+<body>
+
+  <div class="invoice-container">
+    
+    <!-- Header -->
+    <div class="invoice-header">
+      <div class="company-info">
+        <h1 class="company-name">Ramu Saree Showroom</h1>
+        <p class="company-address">Ramu(Para Military) Lakshmi Complex, Medapadu</p>
+        <p class="company-contact">Phone: 88858 78767 | GST: 18AB12345CD001</p>
+      </div>
+      
+      <div class="invoice-title">
+        <h2>INVOICE</h2>
+      </div>
+    </div>
+
+    <!-- Invoice Details -->
+    <div class="invoice-details">
+      <div class="detail-row">
+        <div class="detail-item">
+          <label>Invoice No:</label>
+          <span id="inv-number" class="invoice-number">BIL-001</span>
+        </div>
+        <div class="detail-item">
+          <label>Date:</label>
+          <span id="inv-date" class="invoice-date">11-05-2026</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Customer Information -->
+    <div class="customer-section">
+      <div class="section-title">BILL TO:</div>
+      <div class="customer-info">
+        <p><strong>Name:</strong> <span id="inv-customer-name">Customer Name</span></p>
+        <p><strong>Phone:</strong> <span id="inv-customer-phone">+91 0000000000</span></p>
+      </div>
+    </div>
+
+    <!-- Items Table -->
+    <table class="items-table">
+      <thead>
+        <tr>
+          <th class="col-sno">S.No</th>
+          <th class="col-desc">Description</th>
+          <th class="col-qty">Qty</th>
+          <th class="col-rate">Rate</th>
+          <th class="col-total">Amount</th>
+        </tr>
+      </thead>
+      <tbody id="inv-items-body">
+        <!-- Items will be inserted here by JavaScript -->
+        <tr>
+          <td>1</td>
+          <td>Sample Saree</td>
+          <td>1</td>
+          <td>₹500.00</td>
+          <td>₹500.00</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- Totals Section -->
+    <div class="totals-section">
+      <div class="totals-row">
+        <span class="label">Subtotal:</span>
+        <span id="inv-subtotal" class="value">₹500.00</span>
+      </div>
+      
+      <div class="totals-row">
+        <span class="label">GST (5%):</span>
+        <span id="inv-gst" class="value">₹25.00</span>
+      </div>
+
+      <div class="totals-row total-amount">
+        <span class="label">TOTAL AMOUNT:</span>
+        <span id="inv-total" class="value">₹590.00</span>
+      </div>
+
+      <div class="totals-row">
+        <span class="label">Payment Mode:</span>
+        <span id="inv-payment-mode" class="value">Cash</span>
+      </div>
+    </div>
+
+    <!-- UPI QR Code -->
+    <div class="qr-section" id="inv-qr-section" style="display: none;">
+      <p class="qr-label">Pay via UPI:</p>
+      <div id="inv-qr-code" class="qr-code"></div>
+    </div>
+
+    <!-- Footer -->
+    <div class="invoice-footer">
+      <p>Thank you for your business!</p>
+      <p class="footer-note">This is a computer-generated invoice and does not require a signature.</p>
+    </div>
+
+  </div>
+
+  <script>
+    // Get data from URL parameters
+    const params = new URLSearchParams(window.location.search);
+    
+    document.getElementById('inv-number').textContent = params.get('billNo') || 'BIL-001';
+    document.getElementById('inv-date').textContent = params.get('billDate') || new Date().toLocaleDateString();
+    document.getElementById('inv-customer-name').textContent = params.get('custName') || 'Customer';
+    document.getElementById('inv-customer-phone').textContent = params.get('custPhone') || 'N/A';
+    document.getElementById('inv-payment-mode').textContent = params.get('paymentMode') || 'Cash';
+    
+    // Set totals
+    document.getElementById('inv-subtotal').textContent = params.get('subtotal') || '₹0.00';
+    document.getElementById('inv-gst').textContent = params.get('gst') || '₹0.00';
+    document.getElementById('inv-total').textContent = params.get('total') || '₹0.00';
+    
+    // Parse and display items
+    const itemsJson = params.get('items');
+    if (itemsJson) {
+      try {
+        const items = JSON.parse(decodeURIComponent(itemsJson));
+        const itemsBody = document.getElementById('inv-items-body');
+        itemsBody.innerHTML = ''; // Clear placeholder
+        
+        items.forEach((item, index) => {
+          const row = document.createElement('tr');
+          row.innerHTML = `
+            <td>${index + 1}</td>
+            <td>${item.description || 'Item'}</td>
+            <td>${item.qty || 1}</td>
+            <td>${item.rate || '₹0.00'}</td>
+            <td>${item.total || '₹0.00'}</td>
+          `;
+          itemsBody.appendChild(row);
+        });
+      } catch (e) {
+        console.error('Error parsing items:', e);
+      }
+    }
+    
+    // Auto print when page loads
+    window.addEventListener('load', function() {
+      setTimeout(function() {
+        window.print();
+      }, 500);
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Billing System - Bills</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="https://www.image2url.com/r2/default/images/1778478894381-73e87991-c1e5-49b6-b762-98cdb4b3d4cd.png" alt="Logo" class="logo" />
+        <h2>Ramu Saree Showroom</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          Dashboard
+        </a>
+
+        <a href="new-bill.html" class="nav-link">
+          New Invoice
+        </a>
+
+        <a href="customers.html" class="nav-link">
+          Customers
+        </a>
+
+        <a href="payments.html" class="nav-link">
+          Payments
+        </a>
+
+        <a href="bills.html" class="nav-link">
+          Invoice History
+        </a>
+
+        <a href="monthly-analysis.html" class="nav-link">
+          Sales Reports
+        </a>
+
+        <a href="login.html"
+           class="nav-link logout-link"
+           onclick="logout()">
+          Sign Out
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+  <!-- Main Bills Page -->
+  <section id="page-bills" class="page">
+    <!-- Search & List Card -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Bills</h2>
+        <p class="card-subtitle">Search and view previous bills.</p>
+      </div>
+
+      <div class="card-body">
+        <!-- Filters -->
+        <div class="filters-row">
+          <input type="date" id="bill-from" />
+          <input type="date" id="bill-to" />
+
+          <input
+            type="text"
+            id="bill-search"
+            placeholder="Name / phone / bill no"
+          />
+
+          <button
+            type="button"
+            id="bill-search-btn"
+            class="secondary-btn"
+          >
+            Search
+          </button>
+        </div>
+
+        <!-- Bills Table -->
+        <div class="table">
+          <div class="table-head cols-5">
+            <span>Bill No</span>
+            <span>Date</span>
+            <span>Customer</span>
+            <span>Amount</span>
+            <span>Action</span>
+          </div>
+
+          <div id="bills-body" class="table-body">
+            <!-- JavaScript will insert rows here -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bill Detail Card -->
+    <div id="bill-detail" class="card hidden">
+      <div class="card-header between">
+        <h2>Bill Details</h2>
+
+        <div class="header-actions">
+          <button
+            type="button"
+            id="bill-print-btn"
+            class="primary-btn small"
+          >
+            Print
+          </button>
+
+          <button
+            type="button"
+            id="bill-detail-close"
+            class="secondary-btn small"
+          >
+            Close
+          </button>
+        </div>
+      </div>
+
+      <div class="card-body">
+        <!-- Bill details shown here -->
+        <pre id="bill-detail-text"></pre>
+      </div>
+    </div>
+  </section>
+
+    </main>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="JS/auth.js"></script>
+  <script src="JS/bills.js"></script>
+</body>
+</html>

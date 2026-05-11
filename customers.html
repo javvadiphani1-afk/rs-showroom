@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customers - Ramu Saree Showroom</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <img src="https://via.placeholder.com/40x40?text=RS" alt="Logo" class="sidebar-logo">
+        <h2>Ramu Saree Showroom</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          <span class="nav-icon">📊</span>
+          Dashboard
+        </a>
+
+        <a href="new-bill.html" class="nav-link">
+          <span class="nav-icon">➕</span>
+          New Invoice
+        </a>
+
+        <a href="customers.html" class="nav-link active">
+          <span class="nav-icon">👥</span>
+          Customers
+        </a>
+
+        <a href="payments.html" class="nav-link">
+          <span class="nav-icon">💰</span>
+          Payments
+        </a>
+
+        <a href="bills.html" class="nav-link">
+          <span class="nav-icon">📄</span>
+          Invoice History
+        </a>
+
+        <a href="monthly-analysis.html" class="nav-link">
+          <span class="nav-icon">📈</span>
+          Sales Reports
+        </a>
+
+        <a href="#" class="nav-link" id="logout-btn">
+          <span class="nav-icon">🚪</span>
+          Sign Out
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- Page Header -->
+      <div class="page-header">
+        <div class="page-info">
+          <p class="page-subtitle">Customer management</p>
+          <h1>Customer Database</h1>
+          <p>View and manage your customer information, contact details, and purchase history.</p>
+        </div>
+      </div>
+
+      <!-- Customers Page -->
+      <section id="page-customers" class="page active">
+
+        <!-- Summary Cards -->
+        <div class="summary-grid">
+          <div class="summary-card">
+            <h3>Total Customers</h3>
+            <p class="summary-value" id="total-customers">0</p>
+          </div>
+
+          <div class="summary-card">
+            <h3>Active Customers</h3>
+            <p class="summary-value" id="active-customers">0</p>
+          </div>
+
+          <div class="summary-card">
+            <h3>Total Revenue</h3>
+            <p class="summary-value" id="total-revenue">₹0</p>
+          </div>
+
+          <div class="summary-card">
+            <h3>Avg. Order Value</h3>
+            <p class="summary-value" id="avg-order-value">₹0</p>
+          </div>
+        </div>
+
+        <!-- Customers List Card -->
+        <div class="card">
+          <div class="card-header">
+            <h2>All Customers</h2>
+            <p>Complete list of customers with their contact information and purchase history.</p>
+          </div>
+
+          <!-- Filters -->
+          <div class="filters-section">
+            <div class="filter-row">
+              <input type="text" id="customer-search" placeholder="Search by name or phone..." />
+              <button id="customer-search-btn" class="primary-btn">Search</button>
+              <button id="customer-refresh-btn" class="secondary-btn">Refresh</button>
+            </div>
+          </div>
+
+          <!-- Customers Table -->
+          <div class="table-container">
+            <div class="table-header cols-6">
+              <span>Customer Name</span>
+              <span>Phone Number</span>
+              <span>Total Bills</span>
+              <span>Total Amount</span>
+              <span>Last Purchase</span>
+              <span>Actions</span>
+            </div>
+
+            <div id="customers-body" class="table-body">
+              <!-- Customer rows will be populated here -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Customer Detail Card -->
+        <div id="customer-detail" class="card hidden">
+          <div class="card-header">
+            <h2>Customer Details</h2>
+            <button id="customer-detail-close" class="close-btn">×</button>
+          </div>
+
+          <div id="customer-detail-text" class="detail-content">
+            <!-- Customer details will be shown here -->
+          </div>
+        </div>
+
+      </section>
+    </main>
+  </div>
+
+  <!-- Scripts -->
+  <script src="JS/auth.js"></script>
+  <script src="JS/customers.js"></script>
+</body>
+</html>

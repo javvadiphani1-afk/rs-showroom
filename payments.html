@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payments - Ramu Saree Showroom</title>
+  <link rel="stylesheet" href="CSS/style.css" />
+</head>
+<body>
+
+  <div class="app-layout">
+
+    <!-- Mobile Menu Toggle -->
+    <button class="mobile-menu-toggle" id="mobile-menu-toggle">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <div class="mobile-overlay" id="mobile-overlay"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <img src="https://www.image2url.com/r2/default/images/1778478894381-73e87991-c1e5-49b6-b762-98cdb4b3d4cd.png" alt="Logo" class="logo" />
+        <h2>Ramu Saree Showroom</h2>
+      </div>
+
+      <nav class="sidebar-nav">
+        <a href="dashboard.html" class="nav-link">
+          Dashboard
+        </a>
+
+        <a href="new-bill.html" class="nav-link">
+          New Invoice
+        </a>
+        <a href="customers.html" class="nav-link">
+          Customers
+        </a>
+        <a href="payments.html" class="nav-link">
+          Payments
+        </a>
+
+        <a href="bills.html" class="nav-link">
+          Invoice History
+        </a>
+
+        <a href="monthly-analysis.html" class="nav-link">
+          Sales Reports
+        </a>
+
+        <a href="login.html"
+           class="nav-link logout-link"
+           onclick="logout()">
+          Sign Out
+        </a>
+      </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+  <!-- Payments Page -->
+  <section id="page-payments" class="page active">
+
+    <!-- Summary Cards -->
+    <div class="summary-grid">
+      <div class="card summary-card">
+        <div class="card-body">
+          <h3>Today's Total</h3>
+          <p id="today-total" class="summary-value">₹0.00</p>
+        </div>
+      </div>
+
+      <div class="card summary-card">
+        <div class="card-body">
+          <h3>Cash Payments</h3>
+          <p id="cash-total" class="summary-value">₹0.00</p>
+        </div>
+      </div>
+
+      <div class="card summary-card">
+        <div class="card-body">
+          <h3>UPI Payments</h3>
+          <p id="upi-total" class="summary-value">₹0.00</p>
+        </div>
+      </div>
+
+      <div class="card summary-card">
+        <div class="card-body">
+          <h3>Total Bills</h3>
+          <p id="payments-count" class="summary-value">0</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Payments List Card -->
+    <div class="card">
+      <div class="card-header">
+        <h2>Today's Payments</h2>
+        <p class="card-subtitle">
+          All payments received today.
+        </p>
+      </div>
+
+      <div class="card-body">
+
+        <!-- Filter Row -->
+        <div class="filters-row">
+          <input type="date" id="payment-date" />
+
+          <select id="payment-method-filter">
+            <option value="">All Methods</option>
+            <option value="CASH">Cash</option>
+            <option value="UPI">UPI</option>
+          </select>
+
+          <input
+            type="text"
+            id="payment-search"
+            placeholder="Bill no / customer"
+          />
+
+          <button
+            type="button"
+            id="payment-search-btn"
+            class="secondary-btn"
+          >
+            Search
+          </button>
+
+          <button
+            type="button"
+            id="payment-refresh-btn"
+            class="secondary-btn"
+          >
+            Refresh
+          </button>
+        </div>
+
+        <!-- Payments Table -->
+        <div class="table">
+          <div class="table-head cols-6">
+            <span>Bill No</span>
+            <span>Date</span>
+            <span>Customer</span>
+            <span>Method</span>
+            <span>Amount</span>
+            <span>Status</span>
+          </div>
+
+          <div id="payments-body" class="table-body">
+            <!-- JavaScript will populate rows -->
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Payment Detail Card -->
+    <div id="payment-detail" class="card hidden">
+      <div class="card-header between">
+        <h2>Payment Details</h2>
+
+        <button
+          type="button"
+          id="payment-detail-close"
+          class="secondary-btn small"
+        >
+          Close
+        </button>
+      </div>
+
+      <div class="card-body">
+        <pre id="payment-detail-text"></pre>
+      </div>
+    </div>
+
+  </section>
+
+    </main>
+  </div>
+
+  <!-- JavaScript -->
+  <script src="JS/auth.js"></script>
+  <script src="JS/api.js"></script>
+  <script src="JS/payments.js"></script>
+
+</body>
+</html>
